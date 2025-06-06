@@ -6,6 +6,7 @@ import { SignIn } from "../pages/SignIn/SignIn";
 import { Register } from "../pages/Register/Register";
 import { PrivateRoutes } from "../routes/PrivateRoutes";
 import { AvailableCars } from "../pages/AvailableCars/AvailableCars";
+import { ErrorPage } from "../pages/Shared/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -41,5 +42,6 @@ export const router = createBrowserRouter([
         element: <PrivateRoutes>myBookings</PrivateRoutes>,
       },
     ],
+    errorElement: <ErrorPage/>
   },
 ]);
