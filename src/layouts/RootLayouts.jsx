@@ -5,7 +5,7 @@ import { Footer } from '../pages/Shared/Footer'
 
 export const RootLayouts = () => {
   return (
-    <div className=''>
+    <div>
         <Navbar/>
         <Outlet/>
         <Footer/>
