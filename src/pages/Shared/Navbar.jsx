@@ -58,9 +58,9 @@ export const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link className="flex btn btn-ghost" to={"/"}>
+          <Link className="flex items-center ml-[-20px]" to={"/"}>
             <img className="w-20" src={logo} alt="" />
-            <p className="text-xl">Car Rental</p>
+            <p className="text-2xl font-bold hidden lg:inline">Car Rental</p>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

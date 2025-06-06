@@ -31,7 +31,7 @@ export const Footer = () => {
         </div>
 
         <div className="text-sm">
-          © {new Date().getFullYear()} CarGo Rentals. All rights reserved.
+          © {new Date().getFullYear()} Car Rental. All rights reserved.
         </div>
       </div>
     </footer>
