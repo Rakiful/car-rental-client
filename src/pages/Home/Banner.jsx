@@ -5,12 +5,12 @@ import banner_image from "../../assets/banner_car.png";
 export const Banner = () => {
   return (
     <div
-      className="relative bg-cover bg-center h-[80vh] flex items-center justify-center"
+      className="relative bg-cover bg-center h-[60vh] lg:h-[80vh] flex items-center justify-center"
       style={{ backgroundImage: `url(${banner_image})` }}
     >
       <div className="absolute inset-0 bg-black/30 z-0"></div>
 
-      <div className="z-10 text-left text-white px-4 container mx-auto ">
+      <div className="z-10 text-center lg:text-left text-white px-4 container mx-auto ">
         <h1 className="text-4xl md:text-7xl md:w-200 font-bold drop-shadow-lg">
           Drive Your Dreams Today!
         </h1>
