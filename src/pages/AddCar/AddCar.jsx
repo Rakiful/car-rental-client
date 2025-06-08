@@ -97,7 +97,7 @@ export const AddCar = () => {
           <input
             type="text"
             name="features"
-            placeholder="e.g. GPS, AC, Bluetooth (separate by comma)"
+            placeholder="e.g. GPS, AC, Bluetooth"
             className="w-full h-10 px-2 my-2 border border-white rounded-sm bg-transparent"
             required
           />
