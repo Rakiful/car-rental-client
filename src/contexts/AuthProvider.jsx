@@ -10,7 +10,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firbase.init";
-import Swal from "sweetalert2";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -35,13 +34,6 @@ export const AuthProvider = ({ children }) => {
 
   const signOutUser = () => {
     setLoading(true);
-    Swal.fire({
-      title: "Log Out Successfully",
-      icon: "success",
-      draggable: true,
-      showConfirmButton: false,
-      timer: 2000,
-    });
     return signOut(auth);
   };
 
