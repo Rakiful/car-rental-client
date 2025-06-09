@@ -46,9 +46,9 @@ export const AddCar = () => {
       className="relative bg-cover bg-center py-10 flex items-center justify-center"
       style={{ backgroundImage: `url(${bg_image})` }}
     >
-      <div className="bg-black/50 px-4 mx-3 rounded-md w-full max-w-3xl">
-        <form onSubmit={handleAddCar} className="text-white">
-          <h1 className="text-4xl md:text-5xl font-bold text-center my-6">
+      <div className="bg-orange-200/50 px-4 mx-3 rounded-md w-full max-w-3xl">
+        <form onSubmit={handleAddCar} className="text-black">
+          <h1 className="text-4xl md:text-5xl text-orange-500 font-bold text-center my-6">
             Add Car
           </h1>
 
@@ -57,7 +57,7 @@ export const AddCar = () => {
             type="text"
             name="car_model"
             placeholder="Car Model"
-            className="w-full h-10 px-2 my-2 border border-white rounded-sm bg-transparent"
+            className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
             required
           />
 
@@ -66,14 +66,14 @@ export const AddCar = () => {
             type="number"
             name="rental_price"
             placeholder="e.g. 50"
-            className="w-full h-10 px-2 my-2 border border-white rounded-sm bg-transparent"
+            className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
             required
           />
 
           <label className="font-bold">Availability</label>
           <select
             name="availability"
-            className="w-full h-10 px-2 my-2 border border-white rounded-sm bg-transparent"
+            className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
             required
           >
             <option className="text-black" value="Available">
@@ -89,7 +89,7 @@ export const AddCar = () => {
             type="text"
             name="reg_number"
             placeholder="e.g. XYZ-1234"
-            className="w-full h-10 px-2 my-2 border border-white rounded-sm bg-transparent"
+            className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
             required
           />
 
@@ -98,7 +98,7 @@ export const AddCar = () => {
             type="text"
             name="features"
             placeholder="e.g. GPS, AC, Bluetooth"
-            className="w-full h-10 px-2 my-2 border border-white rounded-sm bg-transparent"
+            className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
             required
           />
 
@@ -107,7 +107,7 @@ export const AddCar = () => {
             name="description"
             rows="3"
             placeholder="Car details..."
-            className="w-full px-2 my-2 border border-white rounded-sm bg-transparent"
+            className="w-full px-2 my-2 border border-black rounded-sm bg-transparent"
             required
           />
 
@@ -116,7 +116,7 @@ export const AddCar = () => {
             type="text"
             name="image_url"
             placeholder="https://image-link.com"
-            className="w-full h-10 px-2 my-2 border border-white rounded-sm bg-transparent"
+            className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
             required
           />
 
@@ -125,7 +125,7 @@ export const AddCar = () => {
             type="text"
             name="location"
             placeholder="e.g. New York"
-            className="w-full h-10 px-2 my-2 border border-white rounded-sm bg-transparent"
+            className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
             required
           />
 

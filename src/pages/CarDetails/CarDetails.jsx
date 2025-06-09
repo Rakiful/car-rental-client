@@ -25,7 +25,7 @@ export const CarDetails = () => {
       });
   }, [id]);
 
-  const handleBooking = () => {
+  const handleModal = () => {
     document.getElementById("bookingCarModal").showModal();
   };
 
@@ -104,7 +104,7 @@ export const CarDetails = () => {
 
           <div className="pt-4">
             <button
-              onClick={() => handleBooking()}
+              onClick={() => handleModal()}
               className="btn bg-orange-500 text-white hover:bg-orange-600 w-full"
             >
               Book Now
