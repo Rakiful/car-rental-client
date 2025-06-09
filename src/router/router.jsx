@@ -9,6 +9,7 @@ import { AvailableCars } from "../pages/AvailableCars/AvailableCars";
 import { ErrorPage } from "../pages/Shared/ErrorPage";
 import { AddCar } from "../pages/AddCar/AddCar";
 import { MyCars } from "../pages/MyCars/MyCars";
+import { CarDetails } from "../pages/CarDetails/CarDetails";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/cars/:id",
-        element: <p>cars details</p>,
+        element: <CarDetails/>,
       },
       {
         path: "/addCar",

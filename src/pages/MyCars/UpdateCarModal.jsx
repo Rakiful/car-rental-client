@@ -76,11 +76,11 @@ export const UpdateCarModal = ({ car ,setCars}) => {
               className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
               required
             >
-              <option className="text-black" value="Available">
-                Available
+              <option className="text-black" value={car.availability}>
+                {car.availability}
               </option>
-              <option className="text-black" value="Not Available">
-                Not Available
+              <option className="text-black" value={car.availability === "Not Available"? "Available" : "Not Available"}>
+                {car.availability === "Not Available"? "Available" : "Not Available"}
               </option>
             </select>
           </div>

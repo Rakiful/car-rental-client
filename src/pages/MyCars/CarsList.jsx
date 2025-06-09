@@ -125,7 +125,7 @@ export const CarsList = ({ myCarsPromise }) => {
               <td>{car.car_model}</td>
               <td>{car.rental_price} $</td>
               <td>{car.bookingCount}</td>
-              <td>{car.availability}</td>
+              <td>{car.availability === "Available" ?  <p className="badge bg-green-500 text-white">{car.availability}</p> : <p className="badge bg-red-500 text-white">{car.availability}</p>}</td>
               <td>{car.date}</td>
               <td>
                 <div className="flex gap-2 justify-center">
