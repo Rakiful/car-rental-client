@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Banner } from "./Banner";
 import { WhyChooseUs } from "./WhyChooseUs";
 import { CustomerReviews } from "./CustomerReviews";
 import { SpecialOffers } from "./SpecialOffers";
+import { RecentListings } from "./RecentListings";
 
 export const Home = () => {
+  const [recentCars , setRecentCars] = useState([])
+
+  useEffect(()=>{
+    fetch("http://localhost:3000/cars/recent")
+    .then(resp=>resp.json())
+    .then(data=>setRecentCars(data))
+  },[])
+
   const testimonials = [
     {
       id: 1,
@@ -69,6 +78,7 @@ export const Home = () => {
     <div>
       <Banner />
       <WhyChooseUs />
+      <RecentListings recentCars={recentCars}/>
       <SpecialOffers offers={offers} />
       <CustomerReviews testimonials={testimonials} />
     </div>

@@ -24,7 +24,7 @@ export const CarsCard = ({ car }) => {
       viewport={{ once: true }}
     >
       <div className="card bg-base-100 shadow-lg">
-        <figure className="px-10 pt-10">
+        <figure className="px-5 pt-5 lg:h-50">
           <img src={car.image_url} alt="cars image" className="rounded-xl" />
         </figure>
         <div className="card-body items-center text-center">
