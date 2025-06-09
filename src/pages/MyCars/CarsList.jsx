@@ -6,11 +6,33 @@ import axios from "axios";
 
 export const CarsList = ({ myCarsPromise }) => {
   const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedCar, setSelectedCar] = useState({});
+  const [sortBy, setSortBy] = useState("");
 
   useEffect(() => {
-    myCarsPromise.then(setCars);
+    myCarsPromise
+      .then((data) => {
+        setCars(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch cars:", error);
+      });
   }, [myCarsPromise]);
+
+  const sortedCars = [...cars].sort((a, b) => {
+    if (sortBy === "newest") {
+      return new Date(b.date) - new Date(a.date);
+    } else if (sortBy === "oldest") {
+      return new Date(a.date) - new Date(b.date);
+    } else if (sortBy === "highest") {
+      return Number(b.rental_price) - Number(a.rental_price);
+    } else if (sortBy === "lowest") {
+      return Number(a.rental_price) - Number(b.rental_price);
+    }
+    return 0;
+  });
 
   const handleEdit = (car) => {
     setSelectedCar(car);
@@ -30,8 +52,8 @@ export const CarsList = ({ myCarsPromise }) => {
       if (result.isConfirmed) {
         axios
           .delete(`http://localhost:3000/cars/${id}`)
-          .then((result) => {
-            if (result.data.deletedCount) {
+          .then((res) => {
+            if (res.data.deletedCount) {
               setCars((prevCars) => prevCars.filter((car) => car._id !== id));
               Swal.fire({
                 title: "Deleted!",
@@ -49,12 +71,33 @@ export const CarsList = ({ myCarsPromise }) => {
     });
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center h-screen">
+        <span className="loading loading-spinner lg:p-10 loading-xl text-orange-500"></span>
+      </div>
+    );
+  }
+
   if (cars.length === 0) {
     return <NoCarsFound />;
   }
 
   return (
     <div className="overflow-x-auto">
+      <div className="flex justify-end">
+        <select
+          className="btn border border-orange-500 text-orange-500 font-bold my-4 "
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+        >
+          <option value="">Sort By</option>
+          <option value="newest">Date Added : Newest First</option>
+          <option value="oldest">Date Added : Oldest First</option>
+          <option value="highest">Price: Highest Price</option>
+          <option value="lowest">Price: Lowest Price</option>
+        </select>
+      </div>
       <table className="table text-center">
         <thead className="bg-orange-200">
           <tr>
@@ -68,27 +111,24 @@ export const CarsList = ({ myCarsPromise }) => {
           </tr>
         </thead>
         <tbody className="bg-orange-100">
-          {cars.map((car) => (
+          {sortedCars.map((car) => (
             <tr key={car._id}>
               <td>
                 <div className="flex items-center justify-center gap-3">
                   <div className="avatar">
                     <div className="mask mask-squircle h-12 w-12">
-                      <img
-                        src={car.image_url}
-                        alt="Avatar Tailwind CSS Component"
-                      />
+                      <img src={car.image_url} alt={car.car_model} />
                     </div>
                   </div>
                 </div>
               </td>
               <td>{car.car_model}</td>
-              <td>{car.rental_price}</td>
+              <td>{car.rental_price} $</td>
               <td>{car.bookingCount}</td>
               <td>{car.availability}</td>
               <td>{car.date}</td>
               <td>
-                <div>
+                <div className="flex gap-2 justify-center">
                   <button
                     onClick={() => handleEdit(car)}
                     className="btn bg-blue-600 text-white"
