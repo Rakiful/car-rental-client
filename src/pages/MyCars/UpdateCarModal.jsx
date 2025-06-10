@@ -1,29 +1,61 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-export const UpdateCarModal = ({ car ,setCars}) => {
+export const UpdateCarModal = ({ car, setCars }) => {
+  const [formValues, setFormValues] = useState({
+    car_model: "",
+    rental_price: "",
+    availability: "Available",
+    reg_number: "",
+    features: "",
+    description: "",
+    image_url: "",
+    location: "",
+  });
+
+  useEffect(() => {
+    if (car && car._id) {
+      setFormValues({
+        car_model: car.car_model || "",
+        rental_price: car.rental_price || "",
+        availability: car.availability || "Available",
+        reg_number: car.reg_number || "",
+        description: car.description || "",
+        image_url: car.image_url || "",
+        location: car.location || "",
+        features: Array.isArray(car.features)
+          ? car.features.join(", ")
+          : car.features || "",
+      });
+    }
+  }, [car]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleUpdateCar = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const updatedCar = Object.fromEntries(formData.entries());
-    updatedCar.features = updatedCar.features
-      .split(",")
-      .map((req) => req.trim());
+    const updatedCar = {
+      ...formValues,
+      features: formValues.features.split(",").map((f) => f.trim()),
+    };
 
     axios
       .put(`http://localhost:3000/cars/${car._id}`, updatedCar)
       .then((result) => {
-        console.log(result);
         if (result.data.modifiedCount) {
           document.getElementById("updateCarModal").close();
-          setCars(prevCars =>
-            prevCars.map(c => (c._id === car._id ? { ...c, ...updatedCar } : c))
+          setCars((prevCars) =>
+            prevCars.map((c) =>
+              c._id === car._id ? { ...c, ...updatedCar } : c
+            )
           );
           Swal.fire({
             icon: "success",
-            title: "The Car its Updated",
+            title: "The Car has been updated",
             showConfirmButton: false,
             timer: 2000,
           });
@@ -32,17 +64,16 @@ export const UpdateCarModal = ({ car ,setCars}) => {
       .catch((error) => {
         console.log(error);
       });
-
-    console.log(updatedCar);
   };
+
   return (
     <dialog id="updateCarModal" className="modal">
-      <div className="modal-box w-11/12 max-w-5xl">
+      <div className="modal-box max-w-5xl">
         <form
           onSubmit={handleUpdateCar}
-          className="text-black grid grid-cols-2 gap-3"
+          className="text-black grid grid-cols-1 md:grid-cols-2 md:gap-3"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-center text-orange-500 my-6 col-span-2">
+          <h1 className="text-4xl md:text-5xl font-bold text-center text-orange-500 my-6 md:col-span-2">
             Update Car
           </h1>
 
@@ -51,7 +82,8 @@ export const UpdateCarModal = ({ car ,setCars}) => {
             <input
               type="text"
               name="car_model"
-              defaultValue={car.car_model}
+              value={formValues.car_model}
+              onChange={handleChange}
               className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
               required
             />
@@ -62,7 +94,8 @@ export const UpdateCarModal = ({ car ,setCars}) => {
             <input
               type="number"
               name="rental_price"
-              defaultValue={car.rental_price}
+              value={formValues.rental_price}
+              onChange={handleChange}
               className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
               required
             />
@@ -72,15 +105,16 @@ export const UpdateCarModal = ({ car ,setCars}) => {
             <label className="font-bold">Availability</label>
             <select
               name="availability"
-              defaultValue={car.availability}
+              value={formValues.availability}
+              onChange={handleChange}
               className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
               required
             >
-              <option className="text-black" value={car.availability}>
-                {car.availability}
+              <option className="text-black" value="Available">
+                Available
               </option>
-              <option className="text-black" value={car.availability === "Not Available"? "Available" : "Not Available"}>
-                {car.availability === "Not Available"? "Available" : "Not Available"}
+              <option className="text-black" value="Not Available">
+                Not Available
               </option>
             </select>
           </div>
@@ -90,7 +124,8 @@ export const UpdateCarModal = ({ car ,setCars}) => {
             <input
               type="text"
               name="reg_number"
-              defaultValue={car.reg_number}
+              value={formValues.reg_number}
+              onChange={handleChange}
               className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
               required
             />
@@ -101,7 +136,8 @@ export const UpdateCarModal = ({ car ,setCars}) => {
             <input
               type="text"
               name="features"
-              defaultValue={car.features}
+              value={formValues.features}
+              onChange={handleChange}
               className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
               required
             />
@@ -111,7 +147,8 @@ export const UpdateCarModal = ({ car ,setCars}) => {
             <label className="font-bold">Description</label>
             <textarea
               name="description"
-              defaultValue={car.description}
+              value={formValues.description}
+              onChange={handleChange}
               className="w-full px-2 my-2 border border-black rounded-sm bg-transparent"
               required
             />
@@ -122,7 +159,8 @@ export const UpdateCarModal = ({ car ,setCars}) => {
             <input
               type="text"
               name="image_url"
-              defaultValue={car.image_url}
+              value={formValues.image_url}
+              onChange={handleChange}
               className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
               required
             />
@@ -133,13 +171,14 @@ export const UpdateCarModal = ({ car ,setCars}) => {
             <input
               type="text"
               name="location"
-              defaultValue={car.location}
+              value={formValues.location}
+              onChange={handleChange}
               className="w-full h-10 px-2 my-2 border border-black rounded-sm bg-transparent"
               required
             />
           </div>
 
-          <button className="col-span-2 btn w-full my-4 bg-orange-500 hover:bg-orange-600 text-white border-0">
+          <button className="md:col-span-2 btn w-full my-4 bg-orange-500 hover:bg-orange-600 text-white border-0">
             Update
           </button>
         </form>

@@ -13,6 +13,7 @@ import { BookingModal } from "./BookingModal";
 export const CarDetails = () => {
   const [loading, setLoading] = useState(true);
   const [car, setCar] = useState(null);
+  const [bookingCount, setBookingCount] = useState(null);
 
   const { id } = useParams();
 
@@ -21,6 +22,7 @@ export const CarDetails = () => {
       .then((resp) => resp.json())
       .then((data) => {
         setCar(data);
+        setBookingCount(data.bookingCount);
         setLoading(false);
       });
   }, [id]);
@@ -63,6 +65,13 @@ export const CarDetails = () => {
             <span className="font-semibold">Availability:</span>
             <span className="text-green-600 font-semibold flex items-center gap-1">
               <FaCheck /> {car.availability}
+            </span>
+          </p>
+          <p className="flex items-center gap-2 text-lg">
+            <FaCar className="text-yellow-600" />
+            <span className="font-semibold">Total Booking:</span>
+            <span className="text-green-600 font-semibold flex items-center gap-1">
+              {bookingCount}
             </span>
           </p>
 
@@ -112,7 +121,7 @@ export const CarDetails = () => {
           </div>
         </div>
       </div>
-      <BookingModal car={car} />
+      <BookingModal car={car} setBookingCount={setBookingCount} />
     </div>
   );
 };

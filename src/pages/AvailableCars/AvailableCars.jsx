@@ -60,9 +60,9 @@ export const AvailableCars = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="flex gap-3 justify-between">
+        <div className="flex gap-3 justify-between ">
           <select
-            className="btn border border-orange-500 text-orange-500 font-bold"
+            className="btn w-1/2 border border-orange-500 text-orange-500 font-bold"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
@@ -74,7 +74,7 @@ export const AvailableCars = () => {
           </select>
           <button
             onClick={() => setView(!view)}
-            className="btn text-white bg-orange-500 hover:bg-orange-600"
+            className="btn w-1/2 text-white bg-orange-500 hover:bg-orange-600"
           >
             Toggle to {view ? "List" : "Grid"} View
           </button>

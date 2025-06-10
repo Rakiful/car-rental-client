@@ -4,7 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-export const BookingModal = ({ car }) => {
+export const BookingModal = ({ car ,setBookingCount}) => {
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -66,6 +66,7 @@ export const BookingModal = ({ car }) => {
 
     newBooking.car_model = car.car_model;
     newBooking.image_url = car.image_url;
+    newBooking.perDayRent = car.rental_price;
     newBooking.status = "Confirmed";
     newBooking.totalCost = totalCost;
     newBooking.userName = user.displayName;
@@ -82,6 +83,7 @@ export const BookingModal = ({ car }) => {
             .put(`http://localhost:3000/cars/booking-count/${car._id}`)
             .then((result) => {
               if (result.data.modifiedCount) {
+                setBookingCount(car.bookingCount+1)
                 document.getElementById("bookingCarModal").close();
                 Swal.fire({
                   icon: "success",

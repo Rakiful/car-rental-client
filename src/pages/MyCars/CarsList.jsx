@@ -85,7 +85,7 @@ export const CarsList = ({ myCarsPromise }) => {
 
   return (
     <div className="overflow-x-auto">
-      <div className="flex justify-end">
+      <div className="flex justify-end mr-3 md:mr-0">
         <select
           className="btn border border-orange-500 text-orange-500 font-bold my-4 "
           value={sortBy}
@@ -98,7 +98,7 @@ export const CarsList = ({ myCarsPromise }) => {
           <option value="lowest">Price: Lowest Price</option>
         </select>
       </div>
-      <table className="table text-center">
+      <table className="table text-center mx-3 md:mx-0">
         <thead className="bg-orange-200">
           <tr>
             <th>Car Image</th>
@@ -125,7 +125,17 @@ export const CarsList = ({ myCarsPromise }) => {
               <td>{car.car_model}</td>
               <td>{car.rental_price} $</td>
               <td>{car.bookingCount}</td>
-              <td>{car.availability === "Available" ?  <p className="badge bg-green-500 text-white">{car.availability}</p> : <p className="badge bg-red-500 text-white">{car.availability}</p>}</td>
+              <td>
+                {car.availability === "Available" ? (
+                  <p className="badge bg-green-500 text-white">
+                    {car.availability}
+                  </p>
+                ) : (
+                  <p className="badge bg-red-500 text-white">
+                    {car.availability}
+                  </p>
+                )}
+              </td>
               <td>{car.date}</td>
               <td>
                 <div className="flex gap-2 justify-center">

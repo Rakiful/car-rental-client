@@ -10,6 +10,7 @@ import { ErrorPage } from "../pages/Shared/ErrorPage";
 import { AddCar } from "../pages/AddCar/AddCar";
 import { MyCars } from "../pages/MyCars/MyCars";
 import { CarDetails } from "../pages/CarDetails/CarDetails";
+import { MyBookings } from "../pages/MyBookings/MyBookings";
 
 export const router = createBrowserRouter([
   {
@@ -46,7 +47,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/myBookings",
-        element: <PrivateRoutes>myBookings</PrivateRoutes>,
+        element: <PrivateRoutes><MyBookings/></PrivateRoutes>,
       },
     ],
     errorElement: <ErrorPage/>
