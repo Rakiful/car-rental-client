@@ -34,7 +34,7 @@ export const CarDetails = () => {
   if (loading) {
     return (
       <div className="flex justify-center h-screen items-center">
-        <span className="loading loading-spinner loading-lg text-orange-500"></span>
+        <span className="loading loading-spinner lg:p-10 loading-lg text-orange-500"></span>
       </div>
     );
   }

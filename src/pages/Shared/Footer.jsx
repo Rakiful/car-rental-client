@@ -12,7 +12,7 @@ export const Footer = () => {
             alt="Website Logo"
             className="w-30 rounded-full"
           />
-          <span className="text-2xl font-bold">CarGo Rentals</span>
+          <span className="text-2xl font-bold">Car Rental</span>
         </div>
 
         <div className="flex gap-6 text-2xl">
@@ -37,4 +37,3 @@ export const Footer = () => {
     </footer>
   );
 };
-

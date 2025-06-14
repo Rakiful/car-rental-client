@@ -91,7 +91,8 @@ export const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex">
-              <div
+              <Link
+                to={"/myProfile"}
                 className="tooltip tooltip-left w-10 mr-5"
                 data-tip={user.displayName || "User"}
               >
@@ -104,7 +105,7 @@ export const Navbar = () => {
                       : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                   }
                 />
-              </div>
+              </Link>
 
               <button
                 onClick={handleSignOut}

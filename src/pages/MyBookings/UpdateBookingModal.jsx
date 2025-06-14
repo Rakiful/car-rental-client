@@ -77,6 +77,19 @@ export const UpdateBookingModal = ({ booking, setBookings }) => {
       return;
     }
 
+    const diffMs = end - start;
+    const sixHoursMs = 6 * 60 * 60 * 1000;
+
+    if (diffMs < sixHoursMs) {
+      document.getElementById("updateBookingModal").close();
+      Swal.fire({
+        icon: "warning",
+        title: "Minimum Booking Time Required",
+        text: "The minimum booking duration is 6 hours.",
+      });
+      return;
+    }
+
     const form = e.target;
     const formData = new FormData(form);
     const updatedBooking = Object.fromEntries(formData.entries());

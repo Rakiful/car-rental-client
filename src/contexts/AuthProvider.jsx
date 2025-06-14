@@ -55,6 +55,7 @@ export const AuthProvider = ({ children }) => {
   const userInfo = {
     user,
     loading,
+    setLoading,
     createUser,
     signInUser,
     googleSignIn,

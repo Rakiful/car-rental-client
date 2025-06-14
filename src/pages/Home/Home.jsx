@@ -6,49 +6,17 @@ import { SpecialOffers } from "./SpecialOffers";
 import { RecentListings } from "./RecentListings";
 
 export const Home = () => {
-  const [recentCars , setRecentCars] = useState([])
+  const [loading, setLoading] = useState(true);
+  const [recentCars, setRecentCars] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch("http://localhost:3000/cars/recent")
-    .then(resp=>resp.json())
-    .then(data=>setRecentCars(data))
-  },[])
-
-  const testimonials = [
-    {
-      id: 1,
-      name: "Rakiful",
-      comment:
-        "The booking process was seamless and the car was in great condition!",
-      image:
-        "https://lh3.googleusercontent.com/a/ACg8ocKbEzRjT3LfXcgFpFtJV4fIqZ97deJcdno93fxzgxTW4mRO9DX9=s96-c",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      comment: "Great selection of cars and excellent customer service.",
-      image: "https://i.pravatar.cc/100?img=2",
-    },
-    {
-      id: 3,
-      name: "Michael Johnson",
-      comment: "I loved the convenience and affordability. Will rent again!",
-      image: "https://i.pravatar.cc/100?img=3",
-    },
-    {
-      id: 4,
-      name: "Emily Davis",
-      comment: "Very user-friendly platform. Found my perfect car in minutes!",
-      image: "https://i.pravatar.cc/100?img=4",
-    },
-    {
-      id: 5,
-      name: "John Doe",
-      comment:
-        "The booking process was seamless and the car was in great condition!",
-      image: "https://i.pravatar.cc/100?img=1",
-    },
-  ];
+      .then((resp) => resp.json())
+      .then((data) => {
+        setRecentCars(data);
+        setLoading(false);
+      });
+  }, []);
 
   const offers = [
     {
@@ -74,13 +42,21 @@ export const Home = () => {
     },
   ];
 
+  if (loading) {
+    return (
+      <div className="flex justify-center h-screen">
+        <span className="loading loading-spinner lg:p-10 loading-xl text-orange-500"></span>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Banner />
       <WhyChooseUs />
-      <RecentListings recentCars={recentCars}/>
+      <RecentListings recentCars={recentCars} />
       <SpecialOffers offers={offers} />
-      <CustomerReviews testimonials={testimonials} />
+      <CustomerReviews />
     </div>
   );
 };

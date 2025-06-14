@@ -26,7 +26,7 @@ export const CarsListView = ({ availableCars }) => {
           viewport={{ once: true }}
         >
           <div className="lg:flex md:flex lg:w-3/4 items-center">
-            <figure className="px-2 pt-2 lg:px-10  lg:pt-10 w-2/3 md:w-1/3 lg:w-1/3">
+            <figure className="px-2 pt-2 lg:px-10  lg:py-10 w-2/3 md:w-1/3 lg:w-1/3">
               <img
                 src={car.image_url}
                 alt="cars image"

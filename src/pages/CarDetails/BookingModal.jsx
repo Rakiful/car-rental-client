@@ -4,7 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-export const BookingModal = ({ car ,setBookingCount}) => {
+export const BookingModal = ({ car, setBookingCount }) => {
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -60,6 +60,19 @@ export const BookingModal = ({ car ,setBookingCount}) => {
       return;
     }
 
+    const diffMs = end - start;
+    const sixHoursMs = 6 * 60 * 60 * 1000;
+
+    if (diffMs < sixHoursMs) {
+      document.getElementById("bookingCarModal").close();
+      Swal.fire({
+        icon: "warning",
+        title: "Minimum Booking Time Required",
+        text: "The minimum booking duration is 6 hours.",
+      });
+      return;
+    }
+
     const form = e.target;
     const formData = new FormData(form);
     const newBooking = Object.fromEntries(formData.entries());
@@ -83,7 +96,7 @@ export const BookingModal = ({ car ,setBookingCount}) => {
             .put(`http://localhost:3000/cars/booking-count/${car._id}`)
             .then((result) => {
               if (result.data.modifiedCount) {
-                setBookingCount(car.bookingCount+1)
+                setBookingCount(car.bookingCount + 1);
                 document.getElementById("bookingCarModal").close();
                 Swal.fire({
                   icon: "success",

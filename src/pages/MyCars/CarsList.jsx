@@ -99,7 +99,7 @@ export const CarsList = ({ myCarsPromise }) => {
         </select>
       </div>
       <table className="table text-center mx-3 md:mx-0">
-        <thead className="bg-orange-200">
+        <thead className="bg-orange-300">
           <tr>
             <th>Car Image</th>
             <th>Car Model</th>
@@ -112,7 +112,7 @@ export const CarsList = ({ myCarsPromise }) => {
         </thead>
         <tbody className="bg-orange-100">
           {sortedCars.map((car) => (
-            <tr key={car._id}>
+            <tr key={car._id} className="hover:bg-orange-200 transition duration-300">
               <td>
                 <div className="flex items-center justify-center gap-3">
                   <div className="avatar">

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { FaTrash, FaCalendarAlt } from "react-icons/fa";
 import { UpdateBookingModal } from "./UpdateBookingModal";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { NoBookingsFound } from "./NoBookingsFound";
 
 export const BookingsList = ({ myBookingsPromise }) => {
   const [bookings, setBookings] = useState([]);
@@ -28,11 +30,12 @@ export const BookingsList = ({ myBookingsPromise }) => {
     const newData = { status: "Cancelled" };
     Swal.fire({
       title: "Are you sure?",
-      text: "You cancel this Booking!",
+      text: "You want to cancel this Booking!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
+      cancelButtonText: "No",
       confirmButtonText: "Yes, Cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -68,11 +71,15 @@ export const BookingsList = ({ myBookingsPromise }) => {
       </div>
     );
   }
+  
+  if (bookings.length === 0) {
+    return <NoBookingsFound/>
+  }
 
   return (
     <div className="overflow-x-auto">
       <table className="table text-center">
-        <thead className="bg-orange-200">
+        <thead className="bg-orange-300">
           <tr>
             <th>Car Image</th>
             <th>Car Model</th>
@@ -86,7 +93,10 @@ export const BookingsList = ({ myBookingsPromise }) => {
         </thead>
         <tbody className="bg-orange-100">
           {bookings.map((booking) => (
-            <tr key={booking._id}>
+            <tr
+              key={booking._id}
+              className="hover:bg-orange-200 transition duration-300"
+            >
               <td>
                 <div className="flex items-center justify-center gap-3">
                   <div className="avatar">
@@ -119,7 +129,7 @@ export const BookingsList = ({ myBookingsPromise }) => {
                     onClick={() => handleEdit(booking)}
                     className="btn bg-blue-600 text-white"
                   >
-                    Modify Date
+                    <FaCalendarAlt className="mr-1" /> Modify Date
                   </button>
 
                   {booking.status === "Cancelled" ? (
@@ -132,7 +142,7 @@ export const BookingsList = ({ myBookingsPromise }) => {
                       onClick={() => handleCancel(booking)}
                       className="btn bg-red-600 text-white"
                     >
-                      Cancel
+                      <FaTrash className="mr-1" /> Cancel
                     </button>
                   )}
                 </div>
