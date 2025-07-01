@@ -3,7 +3,7 @@
 Welcome to **DriveEase** – a full-featured, responsive MERN-based Car Rental System that allows users to rent, manage, and explore a wide variety of cars with ease. This project was developed as part of the Assignment-11 (Assignment Category: 15) to showcase expertise in MERN stack, Firebase/JWT authentication, and real-time car rental features.
 
 ## 🌐 Live Site
-[🔗 Click here to visit the live site](https://your-live-site-url.com)
+[🔗 Click here to visit the live site](https://car-rantal-ad871.web.app/)
 
 ---
 
