@@ -17,7 +17,7 @@ export const BookingsList = ({ myBookingsPromise }) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Failed to fetch bookings:", error);
+        // console.log("Failed to fetch bookings:", error);
       });
   }, [myBookingsPromise]);
 
@@ -40,7 +40,7 @@ export const BookingsList = ({ myBookingsPromise }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .put(`http://localhost:3000/bookings/${booking._id}`, newData)
+          .put(`https://car-rental-server-chi.vercel.app/bookings/${booking._id}`, newData)
           .then((res) => {
             if (res.data.modifiedCount) {
               setBookings((prev) =>
@@ -58,7 +58,7 @@ export const BookingsList = ({ myBookingsPromise }) => {
             }
           })
           .catch((error) => {
-            console.error(error);
+            // console.log(error);
           });
       }
     });

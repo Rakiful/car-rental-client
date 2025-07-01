@@ -20,7 +20,7 @@ export const SignIn = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
 
     // password validate
     const passwordRegExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -34,7 +34,7 @@ export const SignIn = () => {
     signInUser(email, password)
       .then((result) => {
         setErrorMsg("");
-        console.log(result);
+        // console.log(result);
         Swal.fire({
           title: "User Logged in Successfully",
           icon: "success",
@@ -45,7 +45,7 @@ export const SignIn = () => {
         navigate(from);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         if (error.code === "auth/invalid-credential") {
           setErrorMsg("Invalid email or password.");
         } else {

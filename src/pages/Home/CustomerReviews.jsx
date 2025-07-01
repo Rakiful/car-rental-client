@@ -14,7 +14,7 @@ export const CustomerReviews = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:3000/reviews")
+    fetch("https://car-rental-server-chi.vercel.app/reviews")
       .then((resp) => resp.json())
       .then((data) => {
         setTestimonials(data);
@@ -35,7 +35,7 @@ export const CustomerReviews = () => {
     };
 
     axios
-      .post("http://localhost:3000/reviews", newComment)
+      .post("https://car-rental-server-chi.vercel.app/reviews", newComment)
       .then((result) => {
         if (result.data.insertedId) {
           Swal.fire({
@@ -44,16 +44,16 @@ export const CustomerReviews = () => {
             showConfirmButton: false,
             timer: 2000,
           });
-          fetch("http://localhost:3000/reviews")
+          fetch("https://car-rental-server-chi.vercel.app/reviews")
             .then((resp) => resp.json())
             .then((data) => setTestimonials(data));
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
 
-    console.log(newComment);
+    // console.log(newComment);
     setShowForm(true);
   };
 
@@ -62,7 +62,7 @@ export const CustomerReviews = () => {
   }
 
   return (
-    <div className="my-20 px-4 max-w-7xl mx-auto text-center">
+    <div className="mb-20 px-4 max-w-7xl mx-auto text-center">
       <h2 className="text-4xl md:text-5xl font-bold text-orange-500 mb-6">
         What Our Customers Say
       </h2>

@@ -44,7 +44,7 @@ export const UpdateCarModal = ({ car, setCars }) => {
     };
 
     axios
-      .put(`http://localhost:3000/cars/${car._id}`, updatedCar)
+      .put(`https://car-rental-server-chi.vercel.app/cars/${car._id}`, updatedCar)
       .then((result) => {
         if (result.data.modifiedCount) {
           document.getElementById("updateCarModal").close();
@@ -62,7 +62,7 @@ export const UpdateCarModal = ({ car, setCars }) => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 

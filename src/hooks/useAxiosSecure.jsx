@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://car-rental-server-chi.vercel.app/",
 });
 
 export const useAxiosSecure = () => {
@@ -21,7 +21,7 @@ export const useAxiosSecure = () => {
       return response;
     },
     (error) => {
-      console.log("error in interceptor", error);
+      // console.log("error in interceptor", error);
       if (error.status === 401 || error.status === 403) {
         signOutUser()
           .then(() => {
@@ -32,10 +32,10 @@ export const useAxiosSecure = () => {
               showConfirmButton: true,
               //   timer: 2000,
             });
-            console.log(`sign out the user for ${error.status} status code`);
+            // console.log(`sign out the user for ${error.status} status code`);
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
           });
         setLoading(false);
       }

@@ -56,12 +56,23 @@ export const UpdateBookingModal = ({ booking, setBookings }) => {
 
     const start = new Date(startDate);
     const end = new Date(endDate);
+    const now = new Date();
+
+    if (start < now || end < now) {
+      document.getElementById("bookingCarModal").close();
+      Swal.fire({
+        icon: "warning",
+        title: "Invalid Date/Time",
+        text: "Start or End time cannot be in the past.",
+      });
+      return;
+    }
 
     if (start.getTime() === end.getTime()) {
       document.getElementById("updateBookingModal")?.close();
       Swal.fire({
         icon: "warning",
-        title: "Invalid Dates",
+        title: "Invalid Date/Time",
         text: "Start and End date/time cannot be the same. Please select a valid range.",
       });
       return;
@@ -71,7 +82,7 @@ export const UpdateBookingModal = ({ booking, setBookings }) => {
       document.getElementById("updateBookingModal")?.close();
       Swal.fire({
         icon: "warning",
-        title: "Invalid Dates",
+        title: "Invalid Date/Time",
         text: "End date/time cannot be before Start date/time.",
       });
       return;
@@ -98,7 +109,10 @@ export const UpdateBookingModal = ({ booking, setBookings }) => {
     updatedBooking.totalCost = totalCost;
 
     axios
-      .put(`http://localhost:3000/bookings/${booking._id}`, updatedBooking)
+      .put(
+        `https://car-rental-server-chi.vercel.app/bookings/${booking._id}`,
+        updatedBooking
+      )
       .then((result) => {
         if (result.data.modifiedCount) {
           document.getElementById("updateBookingModal")?.close();
@@ -116,7 +130,7 @@ export const UpdateBookingModal = ({ booking, setBookings }) => {
         }
       })
       .catch((error) => {
-        console.error(error);
+        // console.log(error);
         Swal.fire({
           icon: "error",
           title: "Update Failed",

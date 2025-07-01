@@ -17,7 +17,7 @@ export const CarsList = ({ myCarsPromise }) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Failed to fetch cars:", error);
+        // console.log("Failed to fetch cars:", error);
       });
   }, [myCarsPromise]);
 
@@ -51,7 +51,7 @@ export const CarsList = ({ myCarsPromise }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/cars/${id}`)
+          .delete(`https://car-rental-server-chi.vercel.app/cars/${id}`)
           .then((res) => {
             if (res.data.deletedCount) {
               setCars((prevCars) => prevCars.filter((car) => car._id !== id));
@@ -65,7 +65,7 @@ export const CarsList = ({ myCarsPromise }) => {
             }
           })
           .catch((error) => {
-            console.error("Delete error:", error);
+            // console.log("Delete error:", error);
           });
       }
     });

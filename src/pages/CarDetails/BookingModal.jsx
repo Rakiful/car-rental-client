@@ -39,12 +39,23 @@ export const BookingModal = ({ car, setBookingCount }) => {
 
     const start = new Date(startDate);
     const end = new Date(endDate);
+    const now = new Date();
+
+    if (start < now || end < now) {
+      document.getElementById("bookingCarModal").close();
+      Swal.fire({
+        icon: "warning",
+        title: "Invalid Date/Time",
+        text: "Start or End time cannot be in the past.",
+      });
+      return;
+    }
 
     if (startDate === endDate || start.getTime() === end.getTime()) {
       document.getElementById("bookingCarModal").close();
       Swal.fire({
         icon: "warning",
-        title: "Invalid Dates",
+        title: "Invalid Date/Time",
         text: "Start and End date/time cannot be the same. Please select valid range.",
       });
       return;
@@ -54,7 +65,7 @@ export const BookingModal = ({ car, setBookingCount }) => {
       document.getElementById("bookingCarModal").close();
       Swal.fire({
         icon: "warning",
-        title: "Invalid Dates",
+        title: "Invalid Date/Time",
         text: "End date/time cannot be before Start date/time.",
       });
       return;
@@ -89,11 +100,13 @@ export const BookingModal = ({ car, setBookingCount }) => {
     newBooking.end_date = formatDateTime(endDate);
 
     axios
-      .post("http://localhost:3000/bookings", newBooking)
+      .post("https://car-rental-server-chi.vercel.app/bookings", newBooking)
       .then((result) => {
         if (result.data.insertedId) {
           axios
-            .put(`http://localhost:3000/cars/booking-count/${car._id}`)
+            .put(
+              `https://car-rental-server-chi.vercel.app/cars/booking-count/${car._id}`
+            )
             .then((result) => {
               if (result.data.modifiedCount) {
                 setBookingCount(car.bookingCount + 1);
@@ -104,16 +117,16 @@ export const BookingModal = ({ car, setBookingCount }) => {
                   showConfirmButton: false,
                   timer: 2000,
                 });
-                console.log(result);
+                // console.log(result);
               }
             });
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
 
-    console.log(newBooking);
+    // console.log(newBooking);
   };
 
   return (

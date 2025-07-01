@@ -8,7 +8,7 @@ export const SocialLogin = ({ navigate, from }) => {
   const handleGoggleLogin = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         Swal.fire({
           title: "User Logged in Successfully",
           icon: "success",
@@ -19,7 +19,7 @@ export const SocialLogin = ({ navigate, from }) => {
         navigate(from);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         Swal.fire({
           icon: "error",
           title: "Oops...",

@@ -10,7 +10,7 @@ export const AvailableCars = () => {
   const [sortBy, setSortBy] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/cars/available`)
+    fetch(`https://car-rental-server-chi.vercel.app/cars/available`)
       .then((resp) => resp.json())
       .then((data) => {
         setAvailableCars(data);

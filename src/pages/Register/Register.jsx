@@ -35,7 +35,7 @@ export const Register = () => {
     createUser(email, password)
       .then((result) => {
         setErrorMsg("");
-        console.log(result);
+        // console.log(result);
         Swal.fire({
           title: "User Registration Successfully",
           icon: "success",
@@ -50,7 +50,7 @@ export const Register = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         if (error.code === "auth/email-already-in-use") {
           setErrorMsg("The Email Already Used");
         } else {

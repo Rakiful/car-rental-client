@@ -44,7 +44,9 @@ export const MyProfile = () => {
           timer: 2000,
         });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        // console.log(error)
+      });
   };
 
   const handleVerifyEmail = () => {
@@ -63,7 +65,7 @@ export const MyProfile = () => {
         });
       })
       .catch((error) => {
-        console.error(error);
+        // console.log(error);
         Swal.fire("Error", error.message, "error");
       });
   };
@@ -80,7 +82,7 @@ export const MyProfile = () => {
         setMessage("Profile updated successfully.");
       })
       .catch((error) => {
-        console.error("Error updating Firebase:", error);
+        // console.log("Error updating Firebase:", error);
         setMessage("Error updating Firebase profile.");
       });
   };
@@ -135,7 +137,7 @@ export const MyProfile = () => {
         });
       })
       .catch((error) => {
-        console.error("Password change error:", error);
+        // console.log("Password change error:", error);
         Swal.fire({
           title: "Plese ! give the correct old password",
           icon: "error",
