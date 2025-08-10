@@ -12,6 +12,7 @@ import { MyCars } from "../pages/MyCars/MyCars";
 import { CarDetails } from "../pages/CarDetails/CarDetails";
 import { MyBookings } from "../pages/MyBookings/MyBookings";
 import { MyProfile } from "../pages/MyProfile/MyProfile";
+import { Pricing } from "../pages/Pricing/Pricing";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,14 @@ export const router = createBrowserRouter([
       },
       {
         path: "/cars/:id",
+        element: <CarDetails/>,
+      },
+      {
+        path: "/pricing",
+        element: <Pricing/>,
+      },
+      {
+        path: "/pricing/:id",
         element: <CarDetails/>,
       },
       {

@@ -10,7 +10,7 @@ export const Home = () => {
   const [recentCars, setRecentCars] = useState([]);
 
   useEffect(() => {
-    fetch("https://car-rental-server-chi.vercel.app/cars/recent")
+    fetch("http://localhost:3000/cars/recent")
       .then((resp) => resp.json())
       .then((data) => {
         setRecentCars(data);

@@ -51,7 +51,7 @@ export const CarsList = ({ myCarsPromise }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`https://car-rental-server-chi.vercel.app/cars/${id}`)
+          .delete(`http://localhost:3000/cars/${id}`)
           .then((res) => {
             if (res.data.deletedCount) {
               setCars((prevCars) => prevCars.filter((car) => car._id !== id));

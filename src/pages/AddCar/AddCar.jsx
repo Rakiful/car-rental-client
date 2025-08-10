@@ -23,7 +23,7 @@ export const AddCar = () => {
     });
 
     axios
-      .post("https://car-rental-server-chi.vercel.app/cars", newCar)
+      .post("http://localhost:3000/cars", newCar)
       .then((result) => {
         if (result.data.insertedId) {
           Swal.fire({

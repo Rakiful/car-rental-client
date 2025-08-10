@@ -12,7 +12,6 @@ export const RootLayouts = () => {
       <div className="min-h-[80vh]">
         <Outlet />
       </div>
-
       <Footer />
     </div>
   );

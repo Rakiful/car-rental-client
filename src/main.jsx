@@ -5,6 +5,7 @@ import { router } from "./router/router.jsx";
 import { RouterProvider } from "react-router";
 import { AuthProvider } from "./contexts/AuthProvider.jsx";
 
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>

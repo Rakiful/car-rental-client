@@ -100,12 +100,12 @@ export const BookingModal = ({ car, setBookingCount }) => {
     newBooking.end_date = formatDateTime(endDate);
 
     axios
-      .post("https://car-rental-server-chi.vercel.app/bookings", newBooking)
+      .post("http://localhost:3000/bookings", newBooking)
       .then((result) => {
         if (result.data.insertedId) {
           axios
             .put(
-              `https://car-rental-server-chi.vercel.app/cars/booking-count/${car._id}`
+              `http://localhost:3000/cars/booking-count/${car._id}`
             )
             .then((result) => {
               if (result.data.modifiedCount) {

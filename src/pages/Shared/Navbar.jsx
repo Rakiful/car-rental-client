@@ -31,6 +31,9 @@ export const Navbar = () => {
       <li>
         <NavLink to={"/availableCars"}>Available Cars</NavLink>
       </li>
+      <li>
+        <NavLink to={"/pricing"}>Pricing</NavLink>
+      </li>
       {user && (
         <>
           <li>

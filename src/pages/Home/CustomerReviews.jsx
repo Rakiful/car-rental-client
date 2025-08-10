@@ -14,7 +14,7 @@ export const CustomerReviews = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("https://car-rental-server-chi.vercel.app/reviews")
+    fetch("http://localhost:3000/reviews")
       .then((resp) => resp.json())
       .then((data) => {
         setTestimonials(data);
@@ -35,7 +35,7 @@ export const CustomerReviews = () => {
     };
 
     axios
-      .post("https://car-rental-server-chi.vercel.app/reviews", newComment)
+      .post("http://localhost:3000/reviews", newComment)
       .then((result) => {
         if (result.data.insertedId) {
           Swal.fire({
@@ -44,7 +44,7 @@ export const CustomerReviews = () => {
             showConfirmButton: false,
             timer: 2000,
           });
-          fetch("https://car-rental-server-chi.vercel.app/reviews")
+          fetch("http://localhost:3000/reviews")
             .then((resp) => resp.json())
             .then((data) => setTestimonials(data));
         }

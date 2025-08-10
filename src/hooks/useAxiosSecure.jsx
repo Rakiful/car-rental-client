@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 
 const axiosInstance = axios.create({
-  baseURL: "https://car-rental-server-chi.vercel.app/",
+  baseURL: "http://localhost:3000/",
 });
 
 export const useAxiosSecure = () => {

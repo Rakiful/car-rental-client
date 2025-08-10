@@ -40,7 +40,7 @@ export const BookingsList = ({ myBookingsPromise }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .put(`https://car-rental-server-chi.vercel.app/bookings/${booking._id}`, newData)
+          .put(`http://localhost:3000/bookings/${booking._id}`, newData)
           .then((res) => {
             if (res.data.modifiedCount) {
               setBookings((prev) =>

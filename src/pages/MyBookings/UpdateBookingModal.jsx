@@ -110,7 +110,7 @@ export const UpdateBookingModal = ({ booking, setBookings }) => {
 
     axios
       .put(
-        `https://car-rental-server-chi.vercel.app/bookings/${booking._id}`,
+        `http://localhost:3000/bookings/${booking._id}`,
         updatedBooking
       )
       .then((result) => {
